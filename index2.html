@@ -56,6 +56,10 @@
             75% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+        #splash {
+  transition: opacity 0.5s ease;
+}
+
     </style>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
@@ -64,14 +68,12 @@
 
 </head>
 <body>
-    <!-- Splash Screen -->
-<div id="splash" class="fixed inset-0 z-50 flex items-center justify-center bg-pink-100 transition-opacity duration-1000">
-    <div class="text-center">
-        <div class="text-4xl font-bold text-pink-700 mb-4 animate-pulse">Vilea's Project</div>
-        <div class="loader ease-linear rounded-full border-8 border-t-8 border-pink-500 h-16 w-16 mb-4 mx-auto"></div>
-        <p class="text-pink-500">Menyiapkan pengalaman terbaik untukmu...</p>
-    </div>
+ 
+<!-- Splash Screen -->
+<div id="splash" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+  <img src="/hero.png" alt="Vilea Logo" class="w-32 h-32" />
 </div>
+
 <style>
 .loader {
   border-color: #f0c6e8 transparent transparent transparent;
@@ -83,11 +85,16 @@
 }
 </style>
 <script>
-    window.addEventListener('load', () => {
-        const splash = document.getElementById('splash');
-        splash.style.opacity = 0;
-        setTimeout(() => splash.remove(), 1000);
-    });
+   AOS.init();
+
+  window.addEventListener('load', () => {
+    const splash = document.getElementById('splash');
+    setTimeout(() => {
+      splash.style.opacity = 0;
+      splash.style.transition = "opacity 0.5s ease";
+      setTimeout(() => splash.remove(), 500); // Wait for fade-out
+    }, 2000); // Show for 2 seconds
+  });
 </script>
 
     <!-- Header -->
